@@ -2,6 +2,7 @@
 %define	ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"], "system")')
 %define	ruby_version	%(ruby -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 Summary:	Interpreted Objects for Web Applications
+Summary(pl):	IOWA - interpretowane obiekty dla aplikacji WWW
 Name:		ruby-Iowa
 %define tarname iowa
 Version:	0.9.1
@@ -19,8 +20,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Iowa is a framework, written in the Ruby programming language, for the
-development of both web based applications and more general dynamic web
-content. 
+development of both web based applications and more general dynamic
+web content. 
+
+%description -l pl
+Iowa (Interpreted Objects for Web Applications - interpretowane
+obiekty dla aplikacji WWW) to napisany w jêzyku programowania Ruby
+szkielet do tworzenia zarówno aplikacji opartych na WWW, jak i
+bardziej ogólnej dynamicznej tre¶ci WWW.
 
 %prep
 %setup -q -n %{tarname}_%{version}
@@ -32,12 +39,12 @@ rdoc --op rdoc src/ iowa.rb
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir}/{iowa,apache},%{ruby_ridir},%{_examplesdir}/%{name}}
+install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir}/{iowa,apache},%{ruby_ridir},%{_examplesdir}/%{name}-%{version}}
 cp -a src/* $RPM_BUILD_ROOT%{ruby_rubylibdir}/iowa
 cp -a iowa*.rb $RPM_BUILD_ROOT%{ruby_rubylibdir}
 cp -a mod_iowa.rb $RPM_BUILD_ROOT%{ruby_rubylibdir}/apache
 cp -a ri/ri/* $RPM_BUILD_ROOT%{ruby_ridir}
-cp -a examples extras utils url_mapping $RPM_BUILD_ROOT%{_examplesdir}/%{name}
+cp -a examples extras utils url_mapping $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -52,4 +59,4 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_ridir}/Array/*
 %{ruby_ridir}/Hash/*
 %{ruby_ridir}/Object/*
-%{_examplesdir}/*
+%{_examplesdir}/%{name}-%{version}
