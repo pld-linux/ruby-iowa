@@ -5,16 +5,17 @@ Summary:	Interpreted Objects for Web Applications
 Summary(pl):	IOWA - interpretowane obiekty dla aplikacji WWW
 Name:		ruby-Iowa
 %define tarname iowa
-Version:	0.9.1
+Version:	0.9.2
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/1209/%{tarname}_%{version}.tar.bz
-# Source0-md5:	c2f188758cd1576656a54013fa0609c5
+Source0:	http://rubyforge.org/frs/download.php/1853/%{tarname}_%{version}.tar.bz
+# Source0-md5:	cb27f0baa555c9e4f55ebb4a4a593c0a
 URL:		http://enigo.com/projects/iowa/
 BuildRequires:	ruby
 Requires:	ruby
 Requires:	ruby-LOG4R
+Requires:	ruby-TMail
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,7 +45,7 @@ cp -a src/* $RPM_BUILD_ROOT%{ruby_rubylibdir}/iowa
 cp -a iowa*.rb $RPM_BUILD_ROOT%{ruby_rubylibdir}
 cp -a mod_iowa.rb $RPM_BUILD_ROOT%{ruby_rubylibdir}/apache
 cp -a ri/ri/* $RPM_BUILD_ROOT%{ruby_ridir}
-cp -a examples extras utils url_mapping $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a examples utils $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
