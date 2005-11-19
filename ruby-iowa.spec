@@ -1,10 +1,7 @@
-%define	ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
-%define	ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"], "system")')
-%define	ruby_version	%(ruby -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
+%define tarname iowa
 Summary:	Interpreted Objects for Web Applications
 Summary(pl):	IOWA - interpretowane obiekty dla aplikacji WWW
 Name:		ruby-Iowa
-%define tarname iowa
 Version:	0.9.2
 Release:	1
 License:	Ruby-alike
@@ -12,6 +9,7 @@ Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/1853/%{tarname}_%{version}.tar.bz
 # Source0-md5:	cb27f0baa555c9e4f55ebb4a4a593c0a
 URL:		http://enigo.com/projects/iowa/
+BuildRequires:	rpmbuild(macros) >= 1.263
 BuildRequires:	ruby
 Requires:	ruby
 Requires:	ruby-LOG4R
@@ -22,7 +20,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Iowa is a framework, written in the Ruby programming language, for the
 development of both web based applications and more general dynamic
-web content. 
+web content.
 
 %description -l pl
 Iowa (Interpreted Objects for Web Applications - interpretowane
