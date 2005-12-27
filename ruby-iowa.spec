@@ -3,15 +3,15 @@ Summary:	Interpreted Objects for Web Applications
 Summary(pl):	IOWA - interpretowane obiekty dla aplikacji WWW
 Name:		ruby-Iowa
 Version:	0.9.2
-Release:	1
+Release:	2
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/1853/%{tarname}_%{version}.tar.bz
 # Source0-md5:	cb27f0baa555c9e4f55ebb4a4a593c0a
 URL:		http://enigo.com/projects/iowa/
 BuildRequires:	rpmbuild(macros) >= 1.263
-BuildRequires:	ruby
-Requires:	ruby
+BuildRequires:	ruby-modules
+Requires:	ruby-modules
 Requires:	ruby-LOG4R
 Requires:	ruby-TMail
 #BuildArch:	noarch
