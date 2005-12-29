@@ -9,9 +9,9 @@ Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/1853/%{tarname}_%{version}.tar.bz
 # Source0-md5:	cb27f0baa555c9e4f55ebb4a4a593c0a
 URL:		http://enigo.com/projects/iowa/
-BuildRequires:	rpmbuild(macros) >= 1.263
+BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-modules
-Requires:	ruby-modules
+%ruby_mod_ver_requires_eq
 Requires:	ruby-LOG4R
 Requires:	ruby-TMail
 #BuildArch:	noarch
