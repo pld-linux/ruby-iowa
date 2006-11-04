@@ -1,19 +1,25 @@
+#
+# Conditional build:
+%bcond_without doc	# Build without docs
+#
 %define tarname iowa
 Summary:	Interpreted Objects for Web Applications
 Summary(pl):	IOWA - interpretowane obiekty dla aplikacji WWW
 Name:		ruby-Iowa
-Version:	0.9.2
-Release:	2
+Version:	0.99.2.17
+Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/1853/%{tarname}_%{version}.tar.bz
-# Source0-md5:	cb27f0baa555c9e4f55ebb4a4a593c0a
+Source0:	http://rubyforge.org/frs/download.php/13985/iowa_%{version}.tar.bz2
+# Source0-md5:	97a53f2a83a37e3aea4a2f9afbf79d68
 URL:		http://enigo.com/projects/iowa/
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-modules
+BuildRequires:	setup.rb
 %{?ruby_mod_ver_requires_eq}
 Requires:	ruby-LOG4R
 Requires:	ruby-TMail
+Requires:	ruby-mime-types
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -32,30 +38,45 @@ bardziej ogólnej dynamicznej tre¶ci WWW.
 %setup -q -n %{tarname}_%{version}
 
 %build
-rdoc --ri --op ri src/ iowa.rb
+cp %{_datadir}/setup.rb .
+mv src lib
+ruby setup.rb config \
+	--rbdir=%{ruby_rubylibdir} \
+	--sodir=%{ruby_archdir}
+
+ruby setup.rb setup
+
+%if %{with doc}
+rdoc --ri --op ri lib/ ext/
 rm ri/ri/{Object,Array,Hash}/cdesc*
-rdoc --op rdoc src/ iowa.rb
+rdoc --op rdoc lib/ ext/
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir}/{iowa,apache},%{ruby_ridir},%{_examplesdir}/%{name}-%{version}}
-cp -a src/* $RPM_BUILD_ROOT%{ruby_rubylibdir}/iowa
-cp -a iowa*.rb $RPM_BUILD_ROOT%{ruby_rubylibdir}
-cp -a mod_iowa.rb $RPM_BUILD_ROOT%{ruby_rubylibdir}/apache
-cp -a ri/ri/* $RPM_BUILD_ROOT%{ruby_ridir}
-cp -a examples utils $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir},%{_examplesdir}/%{name}-%{version}}
+ruby setup.rb install \
+	--prefix=$RPM_BUILD_ROOT
+
+%if %{with doc}
+cp -a ri/ri/* $RPM_BUILD_ROOT/%{ruby_ridir}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README rdoc
+%doc README 
+%if %{with doc}
+%doc rdoc
+%endif
 %{ruby_rubylibdir}/*iowa*
-%{ruby_rubylibdir}/apache/*
+%if %{with doc}
 %{ruby_ridir}/Iowa
 %{ruby_ridir}/Crypt
 %{ruby_ridir}/Array/*
 %{ruby_ridir}/Hash/*
 %{ruby_ridir}/Object/*
+%endif
 %{_examplesdir}/%{name}-%{version}
