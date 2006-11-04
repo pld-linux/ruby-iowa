@@ -40,6 +40,7 @@ bardziej ogólnej dynamicznej tre¶ci WWW.
 %build
 cp %{_datadir}/setup.rb .
 mv src lib
+cp -au microprojects/{LRUCache,DiskCache,LinkedList}/src/iowa/* lib/iowa
 ruby setup.rb config \
 	--rbdir=%{ruby_rubylibdir} \
 	--sodir=%{ruby_archdir}
@@ -48,7 +49,7 @@ ruby setup.rb setup
 
 %if %{with doc}
 rdoc --ri --op ri lib/ ext/
-rm ri/ri/{Object,Array,Hash}/cdesc*
+rm ri/ri/{Object,Array,Hash,Date,DateTime,FalseClass,TrueClass,Kernel,Mutex,NilClass,Numeric,Time,String}/cdesc*
 rdoc --op rdoc lib/ ext/
 %endif
 
@@ -76,7 +77,23 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_ridir}/Iowa
 %{ruby_ridir}/Crypt
 %{ruby_ridir}/Array/*
+%{ruby_ridir}/Date/*
+%{ruby_ridir}/DateTime/*
 %{ruby_ridir}/Hash/*
 %{ruby_ridir}/Object/*
+%{ruby_ridir}/Apache/Iowa
+%{ruby_ridir}/FalseClass/*
+%{ruby_ridir}/Kernel/*
+%{ruby_ridir}/IowaComponentMixins
+%{ruby_ridir}/JSON
+%{ruby_ridir}/LexerBase
+%{ruby_ridir}/LexerText
+%{ruby_ridir}/LexerRuby
+%{ruby_ridir}/Monorail
+%{ruby_ridir}/Mutex/*
+%{ruby_ridir}/NilClass/*
+%{ruby_ridir}/Numeric/*
+%{ruby_ridir}/Time/*
+%{ruby_ridir}/String/*
 %endif
 %{_examplesdir}/%{name}-%{version}
