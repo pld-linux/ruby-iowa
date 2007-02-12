@@ -4,7 +4,7 @@
 #
 %define tarname iowa
 Summary:	Interpreted Objects for Web Applications
-Summary(pl):	IOWA - interpretowane obiekty dla aplikacji WWW
+Summary(pl.UTF-8):   IOWA - interpretowane obiekty dla aplikacji WWW
 Name:		ruby-Iowa
 Version:	0.99.2.17
 Release:	1
@@ -28,11 +28,11 @@ Iowa is a framework, written in the Ruby programming language, for the
 development of both web based applications and more general dynamic
 web content.
 
-%description -l pl
+%description -l pl.UTF-8
 Iowa (Interpreted Objects for Web Applications - interpretowane
-obiekty dla aplikacji WWW) to napisany w jêzyku programowania Ruby
-szkielet do tworzenia zarówno aplikacji opartych na WWW, jak i
-bardziej ogólnej dynamicznej tre¶ci WWW.
+obiekty dla aplikacji WWW) to napisany w jÄ™zyku programowania Ruby
+szkielet do tworzenia zarÃ³wno aplikacji opartych na WWW, jak i
+bardziej ogÃ³lnej dynamicznej treÅ›ci WWW.
 
 %prep
 %setup -q -n %{tarname}_%{version}
