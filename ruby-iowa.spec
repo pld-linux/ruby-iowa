@@ -4,7 +4,7 @@
 #
 %define tarname iowa
 Summary:	Interpreted Objects for Web Applications
-Summary(pl.UTF-8):   IOWA - interpretowane obiekty dla aplikacji WWW
+Summary(pl.UTF-8):	IOWA - interpretowane obiekty dla aplikacji WWW
 Name:		ruby-Iowa
 Version:	0.99.2.17
 Release:	1
