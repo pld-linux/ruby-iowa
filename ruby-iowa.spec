@@ -49,7 +49,7 @@ ruby setup.rb setup
 
 %if %{with doc}
 rdoc --ri --op ri lib/ ext/
-rm ri/ri/{Object,Array,Hash,Date,DateTime,FalseClass,TrueClass,Kernel,Mutex,NilClass,Numeric,Time,String}/cdesc*
+rm ri/{Object,Array,Hash,Date,DateTime,FalseClass,TrueClass,Kernel,Mutex,NilClass,Numeric,Time,String}/cdesc*
 rdoc --op rdoc lib/ ext/
 %endif
 
@@ -60,7 +60,7 @@ ruby setup.rb install \
 	--prefix=$RPM_BUILD_ROOT
 
 %if %{with doc}
-cp -a ri/ri/* $RPM_BUILD_ROOT/%{ruby_ridir}
+cp -a ri/* $RPM_BUILD_ROOT/%{ruby_ridir}
 %endif
 
 %clean
