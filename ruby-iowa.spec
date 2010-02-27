@@ -21,6 +21,7 @@ Requires:	ruby-log4r
 Requires:	ruby-tmail
 Requires:	ruby-mime-types
 Obsoletes:	ruby-Iowa
+Provides:	ruby-Iowa
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
