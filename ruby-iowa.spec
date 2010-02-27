@@ -2,24 +2,25 @@
 # Conditional build:
 %bcond_without doc	# Build without docs
 #
-%define tarname iowa
+%define pkgname iowa
 Summary:	Interpreted Objects for Web Applications
 Summary(pl.UTF-8):	IOWA - interpretowane obiekty dla aplikacji WWW
-Name:		ruby-Iowa
+Name:		ruby-%{pkgname}
 Version:	0.99.2.17
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/13985/iowa_%{version}.tar.bz2
+Source0:	http://rubyforge.org/frs/download.php/13985/%{pkgname}_%{version}.tar.bz2
 # Source0-md5:	97a53f2a83a37e3aea4a2f9afbf79d68
 URL:		http://enigo.com/projects/iowa/
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-modules
 BuildRequires:	setup.rb
 %{?ruby_mod_ver_requires_eq}
-Requires:	ruby-LOG4R
-Requires:	ruby-TMail
+Requires:	ruby-log4r
+Requires:	ruby-tmail
 Requires:	ruby-mime-types
+Obsoletes:	ruby-Iowa
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,7 +36,7 @@ szkielet do tworzenia zarówno aplikacji opartych na WWW, jak i
 bardziej ogólnej dynamicznej treści WWW.
 
 %prep
-%setup -q -n %{tarname}_%{version}
+%setup -q -n %{pkgname}_%{version}
 
 %build
 cp %{_datadir}/setup.rb .
