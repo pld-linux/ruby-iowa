@@ -13,15 +13,17 @@ Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/13985/%{pkgname}_%{version}.tar.bz2
 # Source0-md5:	97a53f2a83a37e3aea4a2f9afbf79d68
 URL:		http://enigo.com/projects/iowa/
+BuildRequires:	libstdc++-devel
 BuildRequires:	rpmbuild(macros) >= 1.277
+BuildRequires:	ruby-devel
 BuildRequires:	ruby-modules
 BuildRequires:	setup.rb
 %{?ruby_mod_ver_requires_eq}
 Requires:	ruby-log4r
-Requires:	ruby-tmail
 Requires:	ruby-mime-types
-Obsoletes:	ruby-Iowa
+Requires:	ruby-tmail
 Provides:	ruby-Iowa
+Obsoletes:	ruby-Iowa
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -70,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README 
+%doc README
 %if %{with doc}
 %doc rdoc
 %endif
